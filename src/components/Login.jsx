@@ -1,20 +1,54 @@
-import { useNavigate } from "react-router-dom"
+
 import { useForm } from "react-hook-form"
+
+import {useContext} from "react"
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-//axios serve para a API
-import axios from "axios"
-
-//Swal serve para os alertas
-import Swal from "sweetalert2"
+//usado para colocar o navigate dentro do useEffect
+import { useRef } from "react"
 
 import { MyLogin } from "./Styles/Login"
+import { UserContext } from "../contexts/UserContext"
+
 
 
 function Login() {
-  const addUser = (data) => {
+
+  //novo navigate para clicar no botão de REGISTRAR e voltar para o LOGIN. 
+  //tive que referenciar para poder utilizar dentro do useEffect
+  //useRef retorna apenas um item. Nesse caso, meu useNavigate, que é o valor inicial dele.
+  const navigation = useRef(useNavigate())
+
+  
+  useEffect(() => {
+    const token = localStorage.getItem("authToken")
+    
+    //se foi autentificado, vamos para a dashboard
+    if (token) {
+      //meu useRef retorna um object, que é o current
+      navigation.current.navigate("/dashboard")
+    }
+  }, [])
+
+  const { addUser } = useContext(UserContext)
+
+  //usando o YUP para definir meu formulário e os campos obrigatórios. 
+  const validation = yup.object().shape({
+    email: yup.string().required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),})
+
+  //const que gera alerta de errors quando o form não cumpre os requisitos. puxa a função Validation.
+  const {register, handleSubmit, formState: { errors },} = useForm({resolver: yupResolver(validation),})
+  
+
+
+//cheguei a trocar o addUser pelo "signIn" que está lá embaixo. Mas deu tudo errado e retornei.
+//pega meus dados, dá os alertas necessários e depois, em caso de erro, me mostra os erros e os alertas.
+  /*const addUser = (data) => {
     axios
       .post("https://kenziehub.herokuapp.com/sessions", data)
       .then((response) => {
@@ -37,18 +71,23 @@ function Login() {
       })
     console.log(data)}
 
+  usando o YUP para definir meu formulário e os campos obrigatórios.  
   const validation = yup.object().shape({
     email: yup.string().required("Este campo é obrigatório!"),
     password: yup.string().required("Este campo é obrigatório!")})
 
-  const navigate = useNavigate()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(validation)})
 
+  //novo navigate para clicar no botão de REGISTRAR e voltar para o LOGIN.  
+  const navigate = useNavigate()
+
+  //const que gera alerta de errors quando o form não cumpre os requisitos. puxa a função Validation.
+  const {register, handleSubmit, formState: { errors }} = useForm({resolver: yupResolver(validation)})
+
+
+  //tentando usar o useContext.
+  const {signIn} = useContext(AuthContext)*/
+  
+  
   return (
     <MyLogin>
       <h1 className="Logo">Kenzie Hub</h1>
@@ -83,7 +122,7 @@ function Login() {
         <button
           type="button"
           className="RegisterBtn"
-          onClick={() => navigate("/register")}
+          onClick={() => navigation("/register")}
         >
           Cadastre-se agora!
         </button>

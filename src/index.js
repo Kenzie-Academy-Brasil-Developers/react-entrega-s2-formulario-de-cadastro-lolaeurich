@@ -4,10 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { BrowserRouter } from "react-router-dom"
+import UserProvider from './contexts/UserContext';
+import { TechsContextProvider } from './contexts/TechsContext';
+
+//meu UserProvider tem que ficar abaixo do Router por questão de hierarquia.
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+        <UserProvider>
+          <TechsContextProvider>
+            <App />
+          </TechsContextProvider>
+        </UserProvider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

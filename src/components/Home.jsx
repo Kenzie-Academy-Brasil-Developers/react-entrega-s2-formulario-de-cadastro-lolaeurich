@@ -1,8 +1,29 @@
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { TechsContext } from "../contexts/TechsContext"
+import { UserContext } from "../contexts/UserContext"
 import { HomeHub } from "./Styles/Home"
 
+
+//página com o usuário logado
+
 function Dashboard() {
+
+  const { user } = useContext(UserContext)
+ // const {addTech, deleteTech} = useContext(TechsContext)
+
+  //function handleAddTech(data) {
+   // addTech(data)
+  //}
+
+  //function handleDeleteTech(techId) {
+    //  deleteTech(techId)
+  //}
+
+  //o useNavigate serve para navegar entre páginas, para frente ou para trás. Aqui, uso ele para voltar
+  //ao login quando clico em "sair"
   const navigate = useNavigate()
+  
   return (
     <HomeHub>
       <div className="Header">

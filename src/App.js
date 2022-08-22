@@ -1,15 +1,14 @@
 import "./App.css"
 
-import { BrowserRouter } from "react-router-dom"
 import Router from "./Routers"
 
+
+//coloquei o AuthProvider antes do BrowserRoute pq é de escopo global, mas tmbm não entendi direito.
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Router />
-      </div>
-    </BrowserRouter>
+        <div className="App">
+          <Router />
+        </div>
   );
 }
 

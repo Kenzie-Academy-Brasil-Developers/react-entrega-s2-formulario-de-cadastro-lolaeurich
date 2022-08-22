@@ -1,27 +1,28 @@
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
+//YUP é usado para formulários e suas validações.
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
-//Axios para a API
-import axios from "axios"
-
-//Swal para os alerts
-import Swal from "sweetalert2"
-
 import { MyRegister } from "./Styles/Register"
+import { UserContext } from "../contexts/UserContext"
+import { useContext } from "react"
 
 
 function Register() {
-  const navigate = useNavigate()
 
-  const userRegister = (data) => {
+  //Navigate para voltar do REGISTER para o LOGIN.
+  const navigate = useNavigate()
+  const {userRegister} = useContext(UserContext)
+
+  //usando a API.
+  /*const userRegister = (data) => {
     axios
       .post("https://kenziehub.herokuapp.com/users", data)
       .then((response) => {
 
-      //configurando os alertas da página  
+      //configurando os alertas da página e navegando para o LOGIN novamente. 
       Swal.fire(
           "Cadastro feito com sucesso!",
           "Estamos quase lá!",
@@ -34,9 +35,10 @@ function Register() {
           icon: "error",
           title: "Xiii!",
           text: "Seu e-mail já foi usado anteriormente!"})
-      )}
+      )}*/
 
-      //A senha precisa ter letras maiúsculas e minpusculas, um número e um caracter especial, além de ser de pelo menos 8 dígitos
+  //A senha precisa ter letras maiúsculas e minúsculas, um número e um caracter especial, 
+  //além de ser de pelo menos 8 dígitos.
   const validation = yup.object().shape({
     email: yup.string().required("Este campo é obrigatório!"),
     password: yup
@@ -50,10 +52,9 @@ function Register() {
     course_module: yup.string().required("Este campo é obrigatório!"),
     name: yup.string().required("Este campo é obrigatório!")})
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }} = useForm({resolver: yupResolver(validation)})
+
+  //const que gera alerta de errors quando o form não cumpre os requisitos. puxa a função Validation. 
+  const {register, handleSubmit, formState: { errors }} = useForm({resolver: yupResolver(validation)})
 
   return (
     <MyRegister>
