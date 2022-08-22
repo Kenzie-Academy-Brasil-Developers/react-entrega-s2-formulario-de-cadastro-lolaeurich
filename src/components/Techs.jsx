@@ -1,18 +1,18 @@
 import { useContext } from "react"
-import { TechContext } from "../../contexts/TechContext"
+import { TechsContext } from "../contexts/TechsContext";
 
-import Div from "./Styles/Techs";
+import Div from "./Styles/Techs"
 
 
-function Techs() {
+function Techs({handleOpenModal}) {
 
-  const { techs, deleteTechs } = useContext(TechContext);
+  const { techs, deleteTechs } = useContext(TechsContext);
 
   return (
     <Div>
       <div className="Techs">
         <h2 className="TechsTittle">Minhas tecnologias</h2>
-        <button className="AddBtn" onClick={}>+</button>
+        <button className="AddBtn" onClick={handleOpenModal}>Add</button>
       </div>
 
       <div className="MyMain">
@@ -27,7 +27,7 @@ function Techs() {
                 <h3 className="Text2">{elem.title}</h3>
                 <h4 className="Text3">{elem.status}</h4>
               </span>
-              
+
               <button className="DeleteBtn"
                 onClick={() => deleteTechs(elem.id)}>
               </button>

@@ -48,11 +48,11 @@ const UserProvider = ({ children }) => {
     axios
       .post("https://kenziehub.herokuapp.com/users", data)
       .then((response) => {
-        Swal.fire(
-          "Cadastro feito com sucesso!",
-          "Estamos quase lá!",
-          "Sucesso!"
-        )
+        Swal.fire({
+          icon: "success",
+          tittle: "Cadastro feito com sucesso!",
+          text: "Estamos quase lá!",
+      })
 
         //mostra para onde a página redireciona
         navigate("/")

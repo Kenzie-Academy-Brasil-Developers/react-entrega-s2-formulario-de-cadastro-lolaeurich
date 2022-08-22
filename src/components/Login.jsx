@@ -21,16 +21,15 @@ function Login() {
   //novo navigate para clicar no botão de REGISTRAR e voltar para o LOGIN. 
   //tive que referenciar para poder utilizar dentro do useEffect
   //useRef retorna apenas um item. Nesse caso, meu useNavigate, que é o valor inicial dele.
-  const navigation = useRef(useNavigate())
+  const navigate = useNavigate()
+  const token = localStorage.getItem("authToken")
 
   
-  useEffect(() => {
-    const token = localStorage.getItem("authToken")
-    
+  useEffect(() => {    
     //se foi autentificado, vamos para a dashboard
     if (token) {
       //meu useRef retorna um object, que é o current
-      navigation.current.navigate("/dashboard")
+      navigate.current.navigate("/dashboard")
     }
   }, [])
 
@@ -122,9 +121,7 @@ function Login() {
         <button
           type="button"
           className="RegisterBtn"
-          onClick={() => navigation("/register")}
-        >
-          Cadastre-se agora!
+          onClick={() => navigate("/register")}>Cadastre-se agora!
         </button>
       </form>
     </MyLogin>

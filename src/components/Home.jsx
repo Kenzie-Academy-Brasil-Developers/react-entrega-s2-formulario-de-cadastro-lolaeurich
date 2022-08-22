@@ -4,12 +4,13 @@ import { TechsContext } from "../contexts/TechsContext"
 import { UserContext } from "../contexts/UserContext"
 import { HomeHub } from "./Styles/Home"
 
+
 import Techs from "./Techs"
 
 
 //página com o usuário logado
 
-function Dashboard() {
+function Dashboard({handleOpenModal}) {
 
   const { user } = useContext(UserContext)
  // const {addTech, deleteTech} = useContext(TechsContext)
@@ -39,10 +40,7 @@ function Dashboard() {
         <h1 className="H1">Olá, {window.localStorage.getItem("userName")}!</h1>
         <p className="P">Primeiro módulo (Introdução ao Frontend)</p>
       </div>
-      <h2 className="H2">Que pena! Ainda estamos em desenvolvimento! :|</h2>
-      <p className="Quote">
-        Nossa aplicação está em desenvolvimento. Mas, muita calma! Em breve teremos novidades!
-      </p>
+      <Techs handleOpenModal={handleOpenModal}/>
     </HomeHub>
   )
 }
