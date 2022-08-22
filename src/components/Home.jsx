@@ -4,6 +4,8 @@ import { TechsContext } from "../contexts/TechsContext"
 import { UserContext } from "../contexts/UserContext"
 import { HomeHub } from "./Styles/Home"
 
+import Techs from "./Techs"
+
 
 //página com o usuário logado
 

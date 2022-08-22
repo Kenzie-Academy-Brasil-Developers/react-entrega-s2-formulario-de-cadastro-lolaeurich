@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
   
 
 
-  //utilizando o useEffect para montagem
+  //utilizando o useEffect para montagem e validação do login
   useEffect(() => {
     const token = localStorage.getItem('userToken')
     if(!token){
