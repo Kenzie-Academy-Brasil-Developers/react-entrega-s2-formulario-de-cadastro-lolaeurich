@@ -84,17 +84,7 @@ export const MyLogin = styled.div`
 
     border-radius: 10px;
     margin-bottom: 27px;
-
-    transition-duration: $defaultDuration;
-    transition-property: transform;
-  
-    @include hideTapHighlightColor();
-    @include hardwareAccel();
-    @include improveAntiAlias();
   }
-    .LoginBtn:hover { 
-      transform: scale(1.1) rotate(4deg);
-    }
   
   .Error, .Error2 {
     font-size: small;
@@ -128,15 +118,5 @@ export const MyLogin = styled.div`
 
     border-radius: 10px;
     margin-bottom: 27px;
-
-    transition-duration: $defaultDuration;
-    transition-property: transform;
-  
-    @include hideTapHighlightColor();
-    @include hardwareAccel();
-    @include improveAntiAlias();
   }
-    .RegisterBtn:hover { 
-      transform: scale(1.1) rotate(4deg);
-    }
 `;
