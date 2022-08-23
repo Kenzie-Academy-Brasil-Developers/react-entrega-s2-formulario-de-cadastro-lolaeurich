@@ -39,22 +39,23 @@ function App() {
           <UserProvider>   
             <Router handleOpenModal={handleOpenModal}/>
             <Modal isOpen= {modalOn} onRequestClose= {handleCloseModal} style= {Style}>
-              <div className="modalTopContent">
-                <h2 className="modalTopText">Cadastre uma nova tecnologia</h2>
-                <button className="buttonCloseModal" onClick={handleCloseModal}>Close</button>
+              <div className="Modal">
+                <h2 className="Tittle">Cadastre uma nova tecnologia</h2>
+                <button className="CloseBtn" onClick={handleCloseModal}>Close</button>
               </div>
 
-              <form className="formModal" onSubmit={handleSubmit(addTech)}>
-                <label className="addTechLabel">Nome<input 
-                className="inputAddTech" name="title" type="text" placeholder="Coloque a tecnologia aqui" 
+              <form className="Form" onSubmit={handleSubmit(addTech)}>
+                <label className="AddTech">Nome<input 
+                className="Input" name="title" type="text" placeholder="Qual tecnologia você gostaria de adicionar?" 
                 {...register("title")}/>
 
-                <p className="errorMessage">{errors.title?.message}</p>
+                <p className="Message">{errors.title?.message}</p>
 
                 </label>
 
-                <label className="addTechLabel">Selecionar status<select
-                className="inputAddTech"
+                <label className="AddTechTittle">Selecionar status</label>
+                <select
+                className="AddTech2"
                 name="status"
                 {...register("status")}>
 
@@ -62,9 +63,8 @@ function App() {
                   <option value="Intermediário">Intermediário</option>
                   <option value="Avançado">Avançado</option>
                 </select>  
-                </label>
 
-                <button className="addTechSubmit">Cadastrar nova tecnologia</button>
+                <button className="Submit">Cadastrar nova tecnologia</button>
               </form>
               </Modal>
               </UserProvider>
