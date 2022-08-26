@@ -58,7 +58,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 0.688rem;
+  font-size: x-large;
 
   line-height: 1.188rem;
   color: white;
@@ -74,12 +74,6 @@
 
   border-radius: 40px;
   margin: -28px 5px 12px 0;
-  transition-duration: $defaultDuration;
-  transition-property: transform;
-
-  @include hideTapHighlightColor();
-  @include hardwareAccel();
-  @include improveAntiAlias();
 }
   .CloseBtn:hover { 
     transform: scale(1.1) rotate(4deg);
@@ -154,13 +148,6 @@
   height: 39px;
 
   margin: 32px 0 0 0 ;
-
-  transition-duration: $defaultDuration;
-  transition-property: transform;
-
-  @include hideTapHighlightColor();
-  @include hardwareAccel();
-  @include improveAntiAlias();
 }
   .Submit:hover { 
     transform: scale(1.1) rotate(4deg);
